@@ -10,19 +10,53 @@ const App = () => {
     const [relationship, setRelationship] = useState("");
 
     function logic(str1, str2) {
+        // str1 = str1.toLowerCase()
+        // str2 = str2.toLowerCase()
+        // let map1 = new Map()
+        // let map2 = new Map()
+        // for (let v of str1) {
+        //     if (map1.has(v)) {
+        //         map1.set(v, map1.get(v) + 1)
+        //     } else {
+        //         map1.set(v, 1)
+        //     }
+        // }
+        // for (let v of str2) {
+        //     if (map2.has(v)) {
+        //         map2.set(v, map2.get(v) + 1)
+        //     } else {
+        //         map2.set(v, 1)
+        //     }
+        // }
+        // let obj1 = Object.fromEntries(map1)
+        // let obj2 = Object.fromEntries(map2)
+        // let count = 0
+        // for (let char in obj1) {
+        //     if (obj2[char]) {
+        //         count += Math.abs(obj1[char] - obj2[char])
+        //     } else {
+        //         count += obj1[char]
+        //     }
+        // }
+        // for (let char in obj2) {
+        //     if (!obj1[char]) {
+        //         count += obj2[char]
+        //     }
+        // }
+        // return count % 6
         let arr1 = str1.trim().toLowerCase().split("")
         let arr2 = str2.trim().toLowerCase().split("")
-        let temp1 = [...arr1];
-        let temp2 = [...arr2];
-        for (let i = 0; i < arr1.length; i++) {
-            let index = temp2.indexOf(arr1[i]);
-            if (index !== -1) {
-                temp1[i] = '';
-                temp2[index] = '';
+        let brr = []
+        for(let i=0; i<arr1.length; i++){
+            if(arr2.includes(arr1[i])){
+                arr2.splice(arr2.indexOf(arr1[i]),1)
+            }else{
+                brr.push(arr1[i])
             }
+            //console.log(arr2)
         }
-        let count = temp1.join('').length + temp2.join('').length;
-        return count % 6
+        brr.push(arr2)
+        return brr.length % 6
     }
 
     function handleChange(e) {
